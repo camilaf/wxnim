@@ -1,5 +1,5 @@
-when defined(linux):
-  {.passL: "`wx-config --libs stc`".}
+when defined(linux) or defined(macosx):
+    {.passL: "`wx-config --libs stc`".}
 
 {.deadcodeelim: on.}
 

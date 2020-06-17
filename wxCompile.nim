@@ -20,13 +20,13 @@ when defined(vcc):
     {.passL: "kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib".}
 
   when defined(wxWidgetsPath):
-    {.passC: "/I\"" & (wxWidgetsPath / "include") & "\"" .}
+    {.passC: "-I\"" & (wxWidgetsPath / "include") & "\"" .}
     when defined(i386):
       const wxWidgetsLibPath: string = wxWidgetsPath / "lib" / "vc_lib"
     elif defined(amd64):
       const wxWidgetsLibPath: string = wxWidgetsPath / "lib" / "vc_x64_lib"
     when defined(windows):
-      {.passC: "/I\"" & (wxWidgetsLibPath / "mswu") & "\"".}
+      {.passC: "-I\"" & (wxWidgetsLibPath / "mswu") & "\"".}
       {.passL: "\"" & (wxWidgetsLibPath / "wxmsw30u_adv.lib") & "\"".}
       {.passL: "\"" & (wxWidgetsLibPath / "wxmsw30u_aui.lib") & "\"".}
       {.passL: "\"" & (wxWidgetsLibPath / "wxmsw30u_core.lib") & "\"".}
@@ -64,7 +64,7 @@ elif defined(gcc) or defined(clang):
       {.passC: "-I\"" & (wxWidgetsPath / "include") & "\"".}
       const wxWidgetsLibPath: string = wxWidgetsPath / "lib" / "gcc_lib"
       when defined(windows):
-        {.passC: "/I\"" & (wxWidgetsLibPath / "mswu") & "\"".}
+        {.passC: "-I\"" & (wxWidgetsLibPath / "mswu") & "\"".}
         {.passL: "\"" & (wxWidgetsLibPath / "wxmsw30u_adv.a") & "\"".}
         {.passL: "\"" & (wxWidgetsLibPath / "wxmsw30u_aui.a") & "\"".}
         {.passL: "\"" & (wxWidgetsLibPath / "wxmsw30u_core.a") & "\"".}
